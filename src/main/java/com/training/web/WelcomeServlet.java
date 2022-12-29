@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class WelcomeServlet
  */
-@WebServlet("/WelcomeServlet")
+@WebServlet("/welcomeServlet")
 public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,3 +44,7 @@ public class WelcomeServlet extends HttpServlet {
 	}
 
 }
+
+//Servlet Filter: Used to do pre-processing of request or post-processing of the response.
+
+
