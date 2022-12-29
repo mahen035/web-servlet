@@ -2,6 +2,7 @@ package com.training.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import com.training.web.model.User;
 import com.training.web.service.LoginService;
 import com.training.web.service.LoginServiceImpl;
 
@@ -56,7 +58,10 @@ public class LoginFilter implements Filter {
 		}
 		 
 		else if(service.isValidUser(userName, password)) {
+			
+			List<User> userList = service.getUsers();
 			request.setAttribute("user", userName);
+			request.setAttribute("userList", userList);
 			chain.doFilter(request, response);
 		}
 	

@@ -8,9 +8,10 @@ import com.training.web.model.User;
 
 public class LoginServiceImpl implements LoginService {
 
+	LoginDao dao = new LoginDaoImpl();
 	@Override
 	public boolean isValidUser(String username, String password) {
-		LoginDao dao = new LoginDaoImpl();
+		
 		boolean isValid = false;
 		List<User> userList = dao.getUsers();
 		for (User user : userList) {
@@ -20,4 +21,12 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return isValid;
 	}
+
+	@Override
+	public List<User> getUsers() {
+		List<User> userList = dao.getUsers();
+		return userList;
+	}
 }
+
+// Once you are logged in show all the users and their password in a tabyla=
