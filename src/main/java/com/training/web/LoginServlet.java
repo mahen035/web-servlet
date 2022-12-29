@@ -44,8 +44,11 @@ public class LoginServlet extends HttpServlet {
 			rd.include(request, response);
 		}
 		else if(userName.equals("test") && password.equals("1234")) {
+			
+			request.setAttribute("user", userName);
 			RequestDispatcher rd = request.getRequestDispatcher("WelcomeServlet");
 			rd.forward(request, response);
+			//response.sendRedirect("WelcomeServlet");
 		}
 		
 		else {

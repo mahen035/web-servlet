@@ -31,7 +31,8 @@ public class WelcomeServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.print("<h1>You are successfully logged in </h1>");
+		String user = (String)request.getAttribute("user");
+		out.print("<h1>Welcome "+user+"! You are successfully logged in </h1>");
 	}
 
 	/**
