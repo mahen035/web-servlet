@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.training.web.model.User;
 
@@ -35,7 +37,20 @@ public class WelcomeServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String user = (String)request.getAttribute("user");
+		String password = (String)request.getAttribute("pwd");
 		List<User> usrList = (List<User>)request.getAttribute("userList");
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("userList", usrList);
+		
+		Cookie cookie1 = new Cookie("username", user);
+		//Cookie cookie2 = new Cookie("password", password);
+		
+		response.addCookie(cookie1);
+		//response.addCookie(cookie2);
+		
+		
 		out.print("<h1>Welcome "+user+"! You are successfully logged in </h1>");
 		
 		out.println("<table border='1'> ");
@@ -46,6 +61,29 @@ public class WelcomeServlet extends HttpServlet {
 			out.println("<tr><td>" +usr.getUserName() +"</td>");
 			out.println("<td>" +usr.getPassword() +"</td> </tr>");
 		}
+		
+		/* COOKIES
+		 * out.print("<h3> Cookies are created. Click on the below "+
+		 * " button to get the cookie </h3>" );
+		 * out.print("<form action = 'GetCookieServlet' method = 'POST'>");
+		 * out.print("<input type = 'submit' value = 'Get Cookie'>");
+		 * out.print("</form>");
+		 */
+		
+		//Hidden Fields
+		/*
+		 * out.println("<h3> Click on the below "+
+		 * " button to see the values of username and password </h3>" );
+		 * out.println("<form action = 'GetHiddenFieldsServlet' method = 'POST'");
+		 * out.println("<input type= 'hidden' name = 'user1' value = '"+user+"'>");
+		 * out.println("<input type= 'hidden' name = 'pwd' value = "+password+">");
+		 * out.println("<input type= 'submit' value = 'See values'/>");
+		 * out.println("</form");
+		 */
+		
+		// URL ReWriting
+		out.println("<h3> Click on the below link to see username and password</h3><br/>");
+		out.println("<a href='GetUrlParamServlet?userName="+user+"&password="+password+"'>Click here</a>");
 	}
 
 	/**
@@ -59,5 +97,11 @@ public class WelcomeServlet extends HttpServlet {
 }
 
 //Servlet Filter: Used to do pre-processing of request or post-processing of the response.
+
+// HTTP is a stateless protocol: It doesn't keep track of the client who sends the request
+
+// 1. Cookie  2. Hidden form fields  3. Url rewriting 4. HttpSession
+
+// Cookie: small piece of information stored in client's machine by a web application
 
 

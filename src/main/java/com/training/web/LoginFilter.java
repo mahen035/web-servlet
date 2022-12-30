@@ -12,6 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.training.web.model.User;
 import com.training.web.service.LoginService;
@@ -61,6 +64,8 @@ public class LoginFilter implements Filter {
 			
 			List<User> userList = service.getUsers();
 			request.setAttribute("user", userName);
+			request.setAttribute("pwd", password);
+			
 			request.setAttribute("userList", userList);
 			chain.doFilter(request, response);
 		}

@@ -3,7 +3,6 @@ package com.training.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class GetHiddenFieldsServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/GetHiddenFieldsServlet")
+public class GetHiddenFieldsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public GetHiddenFieldsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,34 +29,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userName = request.getParameter("uname");
-		String password = request.getParameter("pwd");
-		
 		response.setContentType("text/html");
-		
 		PrintWriter out = response.getWriter();
 		
-		if(userName.equals("") || password.equals("")) {
-			out.print("<h2>**Please enter username and password**<h2>");
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
-			rd.include(request, response);
-		}
-		else if(userName.equals("test") && password.equals("1234")) {
-			
-			request.setAttribute("user", userName);
-			request.setAttribute("pwd", password);
-			RequestDispatcher rd = request.getRequestDispatcher("WelcomeServlet");
-			rd.forward(request, response);
-			//response.sendRedirect("WelcomeServlet");
-		}
+		String userName = request.getParameter("user1");
 		
-		else {
-			out.print("<h2>Incorrect login credential!!<h2>");
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
-			rd.include(request, response);
-		}
+		String pass = request.getParameter("pwd");
+		
+		out.println("Username: "+userName +"<br/><br/>");
+		out.println("Password: "+pass );
+		
 	}
 
 	/**
@@ -69,3 +50,5 @@ public class LoginServlet extends HttpServlet {
 	}
 
 }
+
+//URL Rewriting: URL?paramName1=paramValue1&paramName2=paramValue2
