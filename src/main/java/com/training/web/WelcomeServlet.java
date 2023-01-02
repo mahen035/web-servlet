@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -50,17 +51,22 @@ public class WelcomeServlet extends HttpServlet {
 		response.addCookie(cookie1);
 		//response.addCookie(cookie2);
 		
+		request.setAttribute("user", user);
 		
-		out.print("<h1>Welcome "+user+"! You are successfully logged in </h1>");
+		request.setAttribute("usrList", usrList);
 		
-		out.println("<table border='1'> ");
-		out.println("<tr> <th>");
-		out.println("Name </th>");
-		out.println("<th> Password </th>");
-		for(User usr:usrList) {
-			out.println("<tr><td>" +usr.getUserName() +"</td>");
-			out.println("<td>" +usr.getPassword() +"</td> </tr>");
-		}
+		RequestDispatcher rd = request.getRequestDispatcher("usrDetail.jsp");
+		rd.forward(request, response);
+		
+		
+		/*
+		 * out.print("<h1>Welcome "+user+"! You are successfully logged in </h1>");
+		 * 
+		 * out.println("<table border='1'> "); out.println("<tr> <th>");
+		 * out.println("Name </th>"); out.println("<th> Password </th>"); for(User
+		 * usr:usrList) { out.println("<tr><td>" +usr.getUserName() +"</td>");
+		 * out.println("<td>" +usr.getPassword() +"</td> </tr>"); }
+		 */
 		
 		/* COOKIES
 		 * out.print("<h3> Cookies are created. Click on the below "+
@@ -82,8 +88,8 @@ public class WelcomeServlet extends HttpServlet {
 		 */
 		
 		// URL ReWriting
-		out.println("<h3> Click on the below link to see username and password</h3><br/>");
-		out.println("<a href='GetUrlParamServlet?userName="+user+"&password="+password+"'>Click here</a>");
+		//out.println("<h3> Click on the below link to see username and password</h3><br/>");
+		//out.println("<a href='GetUrlParamServlet?userName="+user+"&password="+password+"'>Click here</a>");
 	}
 
 	/**
@@ -103,5 +109,7 @@ public class WelcomeServlet extends HttpServlet {
 // 1. Cookie  2. Hidden form fields  3. Url rewriting 4. HttpSession
 
 // Cookie: small piece of information stored in client's machine by a web application
+
+//JSP: Java Server Pages-> html that can contain java code
 
 

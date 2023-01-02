@@ -43,11 +43,11 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}
-		else if(userName.equals("test") && password.equals("1234")) {
+		else if(userName.equals("Adam") && password.equals("1234")) {
 			
 			request.setAttribute("user", userName);
 			request.setAttribute("pwd", password);
-			RequestDispatcher rd = request.getRequestDispatcher("WelcomeServlet");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 			//response.sendRedirect("WelcomeServlet");
 		}
