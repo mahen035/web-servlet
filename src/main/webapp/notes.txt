@@ -1,0 +1,30 @@
+//sessionScope.value
+//param.value
+//applicationScope.value
+
+// Implicit objects, page directives, include directives, Expression language
+
+// JSTL: Jsp Standard Tag Library
+// JSTL Core tags
+	//c:out, c:set, c:if, c:choose , c:forEach, c:param, c:redirect
+// JSTL formatting tags
+// JSTL SQL tags
+// JSTL functions
+
+
+// JSP Directives: Instructions to the web container(tomcat) on how to control and process the jsp
+// Types: 1. Page directive		2. include directive	3. taglib directive
+// Page directive attruibutes:
+//	import	session		buffer		autoflush	 contentType
+//  isErrorPage	 errorPage	 isThreadSafe	 language 	info
+
+
+//JSP Implicit objects:
+// out (JspWriter)
+// request (HttpServletRequest)
+// response (HttpServletResponse)
+// config (ServletConfig)
+// application (ServletContext)
+// session (HttpSession)
+// page (Object)
+// exception (Throwable)

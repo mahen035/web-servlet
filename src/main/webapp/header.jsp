@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>JSP TUTORIAL</h1>
+	Username: <%=request.getParameter("userName") %>
 </body>
 </html>
